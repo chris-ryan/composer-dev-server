@@ -1,8 +1,11 @@
 const nodemon = require('nodemon');
 
+//set baseDir to where the app is called
+const baseDir = process.cwd();
+
 nodemon({
-    script: 'app.js',
-    watch: [],
+    script: 'start.js',
+    watch: [`${baseDir}/lib`, `${baseDir}/models`],
     ext: 'js json'
   });
   
@@ -14,3 +17,5 @@ nodemon({
   }).on('restart', function (files) {
     console.log('App restarted due to: ', files);
   });
+
+  console.log(`${baseDir}/lib`);
