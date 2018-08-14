@@ -1,15 +1,36 @@
 {
-  "name": "composer-rest-devserve",
+  "engines": {
+    "composer": "^0.19.12"
+  },
+  "name": "medicinetracking-network",
   "version": "0.1.0",
-  "description": "A node wrapper to watch for logic or model changes and restart the composer-rest-server",
-  "main": "serve.js",
+  "description": "Network for tracking the medicine supply chain",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/medicinetracking-network.bna",
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "nodemon": "^1.18.3"
-  },
-  "repository": "github:chris-ryan/composer-rest-devserv"
+  "keywords": [
+    "composer",
+    "composer-network"
+  ],
+  "author": "Allison Irvin",
+  "email": "allirvin@au1.ibm.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "^0.19.12",
+    "composer-cli": "^0.19.12",
+    "composer-client": "^0.19.12",
+    "composer-common": "^0.19.12",
+    "composer-connector-embedded": "^0.19.12",
+    "composer-cucumber-steps": "^0.19.12",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "nyc": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
 }
