@@ -1,7 +1,6 @@
 // const fs = require('fs');
 const nodemon = require('nodemon');
-const Archive = require('./lib/archive-actions');
-
+const Network = require('./lib/network-actions')
 //set baseDir to where the app is called
 // const baseDir = process.cwd();
 const baseDir = '/Users/chris/Documents/Development/DREME';
@@ -22,7 +21,14 @@ let pckg = require(`${baseDir}/package.json`);
 
 // On script start...
 // Generate the business network archive and install
-Archive.installBna(pckg.name, pckg.version);
+function init() {
+  await Network.installBna(pckg.name, pckg.version);
+  let fileMaybe = await Network.start(pckg.name, pckg.version);
+  console.log(fileMaybe)
+}
+
+init();
+
 
 
 // execute nodemon and supply options
