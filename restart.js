@@ -1,6 +1,6 @@
 const fs = require('fs');
 const semver = require('semver')
-const Network = require('./lib/network-actions');
+const Network = require('./lib/network-api');
 
 // const baseDir = process.cwd();
 const baseDir = '/Users/chris/Documents/Development/DREME'

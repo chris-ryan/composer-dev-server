@@ -1,6 +1,7 @@
 // const fs = require('fs');
 const nodemon = require('nodemon');
-const Network = require('./lib/network-actions')
+const Network = require('./lib/network-api');
+const Server = require('./lib/rest-launcher');
 //set baseDir to where the app is called
 // const baseDir = process.cwd();
 const baseDir = '/Users/chris/Documents/Development/DREME';
@@ -11,24 +12,22 @@ let pckg = require(`${baseDir}/package.json`);
 //const networkName = pckg.name;
 //let version = pckg.version;
 
-// let pckg = require(`${baseDir}/package-copy.json`);
-// get the business network name from package.json
-// const networkName = pckg.name;
-
-// function handleErr(err) {
-//   console.log(err.message);
-// }
+function handleErr(err) {
+  console.log(err.message);
+}
 
 // On script start...
-// Generate the business network archive and install
-function init() {
+async function init() {
+  // Generate the business network archive and install
   await Network.installBna(pckg.name, pckg.version);
-  let fileMaybe = await Network.start(pckg.name, pckg.version);
-  console.log(fileMaybe)
+  // Start the business network
+  await Network.start(pckg.name, pckg.version).catch(handleErr);
+  // Import the network admin identity card
+  await Network.importCard().catch(handleErr);
+  Server.start(`admin@${pckg.name}`);
 }
 
 init();
-
 
 
 // execute nodemon and supply options

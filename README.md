@@ -13,12 +13,27 @@ npm install
 
 ```
 
-## Runtime Prerequesites
+## Execution
+
+### Runtime Prerequesites
 Before running, you'll need to start your local fabric and create a business network card.
 eg:
 ```sh
 cd ~/fabric-dev-servers
-export FABRIC_VERSION=hlfv12
+// export FABRIC_VERSION=hlfv12
 ./startFabric.sh
 ./createPeerAdminCard.sh
 ```
+
+###
+
+## Configuration
+The REST Server can be configured by declaring environment variables before executing composer-dev-server
+Eg:
+```sh
+COMPOSER_TLS=true
+COMPOSER_TLS_CERTIFICATE=/tmp/cert.pem
+COMPOSER_TLS_KEY=/tmp/key.pem
+```
+
+The list of available options can be found in the [Hyperledger docs](https://hyperledger.github.io/composer/latest/reference/rest-server)
