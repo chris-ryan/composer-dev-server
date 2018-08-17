@@ -20,7 +20,6 @@ Before running, you'll need to start your local fabric and create a business net
 eg:
 ```sh
 cd ~/fabric-dev-servers
-// export FABRIC_VERSION=hlfv12
 ./startFabric.sh
 ./createPeerAdminCard.sh
 ```
@@ -29,10 +28,14 @@ cd ~/fabric-dev-servers
 
 Change the root of your hyperledger's project directory.
 eg:
-```sh cd ~/Development/my-hyperledger ```
+```sh
+cd ~/Development/my-hyperledger
+```
 
 start the rest server (and watcher) using the command composer-dev-server
-```sh composer-dev-server ```
+```sh
+composer-dev-server
+```
 
 ### Terminating the dev server
 
