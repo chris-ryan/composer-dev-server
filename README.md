@@ -9,6 +9,7 @@ Make sure you have [Node.js](http://nodejs.org/), the [Composer CLI tools](https
 ## Installation instructions
 ```sh
 git clone https://github.com/chris-ryan/composer-dev-server.git # or clone your own fork
+npm install
 npm install -g composer-dev-server
 
 ```
