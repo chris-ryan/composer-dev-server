@@ -8,14 +8,10 @@ const nodemon = require('nodemon');
 const Network = require('../lib/network-api');
 const Server = require('../lib/rest-launcher');
 //set baseDir to where the app is called
-// const baseDir = process.cwd();
-const baseDir = '/Users/chris/Documents/Development/DREME';
+const baseDir = process.cwd();
 
-// get the business network name and version from package.json
-// let pckg = JSON.parse(fs.readFileSync(`${baseDir}/package.json`));
+// get package.json for the business network name and version
 let pckg = require(`${baseDir}/package.json`);
-//const networkName = pckg.name;
-//let version = pckg.version;
 
 function handleErr(err) {
   console.log(err.message);
@@ -32,7 +28,7 @@ async function init() {
   // Import the network admin identity card
   await Network.importCard().catch(handleErr);
   // Spawn a process to run the composer-rest-server cli script
-  let spawnServer = Server.spawn();
+  let spawnServer = Server.spawn(pckg.name);
   return spawnServer();
 }
 
@@ -44,9 +40,8 @@ init().then((result)=> {
 // execute nodemon and supply options
  // nodemon('-e --on-change-only -w models "cto js json" restart.js');
 nodemon({
-  script: 'restart.js',
-  //watch: [`${baseDir}/lib`, `${baseDir}/models`],
-  watch: [`${baseDir}/models`],
+  script: `${__dirname}/../lib/restart.js`,
+  watch: [`${baseDir}/lib`, `${baseDir}/models`],
   runOnChangeOnly: true,
   spawn: true, //required for runOnChangeOnly
   ext: 'cto js json',
