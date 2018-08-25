@@ -22,11 +22,11 @@ let server = {};
 // On script start...
 async function init() {
   // Generate the business network archive and install
-  await Network.installBna(pckg.name, pckg.version);
+  await Network.createAndInstall(pckg.name, pckg.version);
   // Start the business network
   await Network.start(pckg.name, pckg.version).catch(handleErr);
   // Import the network admin identity card
-  await Network.importCard().catch(handleErr);
+  await Network.importCard(pckg.name).catch(handleErr);
   // Spawn a process to run the composer-rest-server cli script
   let spawnServer = Server.spawn(pckg.name);
   return spawnServer();

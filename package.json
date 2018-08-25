@@ -6,7 +6,7 @@
     "composer": "^0.19.12"
   },
   "name": "composer-dev-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A wrapper for Hyperledger's composer-cli tools and rest-server to provide reloading when changes to the model are saved",
   "scripts": {},
   "keywords": [
@@ -18,7 +18,12 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
+    "ajv": "^6.5.3",
+    "chalk": "^2.4.1",
+    "composer-admin": "^0.20.0",
+    "composer-client": "^0.20.0",
+    "jszip": "^3.1.5",
     "nodemon": "^1.18.3",
-    "composer-cli": "^0.20"
+    "ora": "^3.0.0"
   }
 }
